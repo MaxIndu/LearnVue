@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <h3>Hello Vue.</h3>
+    <div id="app">
+        <p>{{ message }}</p>
+    </div>
+    
+    <h3>Binding</h3>
+    <div id="app-2">
+        <span v-bind:title="message">
+            Hover Mouse Over me for a few seconds to see the message.
+        </span>
+    </div>
+
+    <h3>Conditions & Loops</h3>
+    <p>Go ahead and enter app3.seen = false in the console. You should see the message disappear.</p>
+    <div id="app-3">
+        <span v-if="seen">Now you See Me :)</span>
+    </div>
+
+    <h3>Vue Derivatives : List Iterations</h3>
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ol>
+    </div>
+
+    <h3>Handlind User Inputs</h3>
+    <div id="app-5">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+
+    <h3>Two Way Bindings</h3>
+    <div id="app-6">
+        <p>{{message}}</p>
+        <input v-model="message">
+    </div>
+
+</body>
+
+<script>
+     var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js!'
+        }
+    })
+
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            message: 'You loded this page on ' + new Date().toLocaleString()
+        }
+    })
+
+    var app3 = new Vue({
+        el: '#app-3',
+        data:{
+            seen: true
+        }
+    })
+
+    var app4 = new Vue({
+        el: '#app-4',
+        data:{
+            todos: [
+                {text: 'Learn Vue.js'},
+                {text: 'Learn Angular.js'},
+                {text: 'Learn React.js'}
+            ]
+        }
+    })
+
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            message: 'Helow Vue.js'
+        },
+        methods: {
+            reverseMessage: function(){
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+
+    var app6 = new Vue({
+        el: '#app-6',
+        data:{
+            message: 'Hello Vue.js'
+        }
+    })
+
+</script>
+
+</html>

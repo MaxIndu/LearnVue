@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Vue Components</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+	<h3>Basic Compenet</h3>
+	<div id="app">
+		<ol>
+			<todo-item></todo-item>
+		</ol>
+	</div>
+
+	<div id="app-2">
+		<ol>
+			<todo-item2 v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item2>
+		</ol>
+	</div>
+</body>
+<script>
+	// Basic Binding
+	Vue.component('todo-item', {
+		template: '<li>This is a item.</li>'
+	})
+	var app = new Vue({
+	  el: '#app'
+	})
+
+	// Parametarized Components
+	Vue.component('todo-item2', {
+		props: ['todo'],
+		template: '<li>{{todo.text}}</li>'
+	})
+	var app2 = new Vue({
+		el: '#app-2',
+		data: {
+			groceryList: [
+				{id: 1 , text: 'Vegitables'},
+				{id: 2 , text: 'Cheese'},
+				{id: 3 , text: 'Whatever else humans are supposed to eat'},
+			]
+		}
+	})
+
+</script>
+</html>
